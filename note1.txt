@@ -1,0 +1,61 @@
+yahoo baba youtube channel ke dwara ham abi crud operation pr work kar rhe hai
+
+step 1 : aap sabse pahle aap apne main folder me package.json (npm init) banayege aur usme apna sara package jo-jo requirement h
+ use add karoge (like npm i express ejs nodemon) , aage jaise-jaise packages ki jarurat padegi ham install kar ke uska use karenge.
+
+step 2 : hamara sabse pahla page index.js hoga jisme index.js page pr sabse pahle express require kiya port banaya 
+    us port ko listen kra diya etna ho jane ke baab ham route create karte hai. jo ki read,add,edit,delete operation ko perform karenge.
+    ab jaise-jaise aage work badega ho sakta h ki hame aur middleware ya routes ya kisi aur jis ki jarurat padegi ham us samay 
+    use karenge.
+
+step 3 : ab ham apne main folder me public, models aur views name se 3 folder banayenge
+    1. public folder : esme hm apni css, bootstrap, javascript, image, video ko rakhate hai.
+            important baat public folder ko direct estemal karne ke liye ham index.js me ek middleware ka use karte hai
+            app.use(express.static('public'))  // set public folder for access static file like css , javascript , image, vedio , audio
+
+    2. views folder : yha ek important baat view folder ka name views hi rakhana hota hai. jisse express ko pta chalta h ki 
+        html ka page kha h views folder tak ka path nhi likhana padta hai. ab ham yha html se related sare
+        pages banate hai.
+
+        -views/partials : partials folder ka matlab hai ki chote-chote jo reuseability vale code hote hai vo yha rakhe hate hai
+            ex. header, footer, sidebar, menu 
+    
+    3. models folder : es folder me ham sare database related pages bnate hai.
+
+step 3 : hamne es project me bootstrap ka template use kiya h jo https://www.yahubaba.com/codeprojects/html link pr h.
+    es template ko apne views folder me alag-alag file me convert karenge ex. home.ejs, add-content.ejs, show-content.ejs, update-content.ejs
+    sare page me jo bhi link diya gya ek page se dusare page pr jamne liye vo sare html link hota uski jagah apne routes ko set karenge.
+
+step 4 : database mongoose se apne project ko jodna : 
+        step 1 : npm i mongoose // agar ham apne package.json me dekhenge to "mongoose": "^8.15.1", current version dikhega
+        
+        step 2 : index.js me mongoose ko require krna h. ex. const mongoose = require('mongoose');
+        
+        step 3 : database se connection banayenge jiske liye command promp ko open karkse command likhenge "mongosh" enter kar denge
+            to vha hame likha milega ( connecting to :  mongodb://127.0.0.1:27017/ ) ye mongoose ka host name h. host name ko copy kar lenge 
+        
+        step 4 : ab ham chahte h ki index.js file jya code nhi ho, usme sare code garbage ho jayenge esliye ham ek contact.models.js name 
+            ka schema bna kar ese models folder me rakhenge.
+            schema ban jane ke use schema ko imarot kar lenge index.js file me ex. const contact = require('./models/contacts.models')
+            etna hone ke baad agar aap command prompt me
+                        "mongosh" type karke ener karenge mongosh database run ho jayenge tab
+                        "show dbs" command run karenge tab hame vha hamara database "contacts-crud" show ho jayega
+                        "use contacts-crud" command use karenge phir
+                        "show collections" command enter karne pr Contact name ka table ya collection hame show ho jayega.
+        
+step 5 : home : home.ejs me ham jo html ke table me list show ho rha h usko remove kar denge sirf ek <tr> ko rakhenge
+            jo data home "/" route (res.render("home", {contacts})) se aa rha h use es page pr <tr> me foreach loop ki madad se print kar denge.
+            sath hi sath edit/update/delete ke button pr routes se aaya _id ko bhi set kar denge ex. "/update-contact/<%= contact._id %>"
+
+
+step 6 : set id edit/update/delete routes : ab ham index.js me edit/update/delete routes pr home.ejs se aa rha hua id set karenge
+                ex. '/show-contact/:id'
+
+step 7 : show dynamic data : 
+
+step 8 : edit befor update data :
+
+step 9 : update data :
+
+step 10: delete data :
+
